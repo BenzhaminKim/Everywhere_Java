@@ -1,0 +1,262 @@
+<!DOCTYPE HTML>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{fragments/main_layout}">
+<head>
+    <title>Spring Boot Thymeleaf + Spring Security</title>
+</head>
+<body>
+<div layout:fragment="content" class="container-fluid">
+
+    <style>
+    .imgbox {
+        display: grid;
+        height: 100%;
+    }
+
+    .center-fit {
+        max-width: 100%;
+        max-height: 100vh;
+        margin: auto;
+    }
+    #navbar {
+      background-color: #333; /* Black background color */
+      position: fixed; /* Make it stick/fixed */
+      top: -200px; /* Hide the navbar 50 px outside of the top view */
+      width: 100%; /* Full width */
+      transition: top 0.3s; /* Transition effect when sliding down (and up) */
+      z-index:3;
+    }
+
+    /* Style the navbar links */
+
+
+</style>
+
+    <div id="navbar" class="navbar navbar-dark bg-dark pt-3 pb-3 ">
+        <div class="d-flex justify-content-start ml-3">
+            <h4 class="text-white" th:text="${price}" ></h4> &nbsp; <h4 class="text-white">per month</h4>
+        </div>
+        <div class="d-flex justify-content-end mr-3">
+            <a class="btn btn-outline-light text-white mr-1 pr-4 pl-4" href="tel:010-3826-5526"><i class="fas fa-phone"></i> </a>
+            <a class="btn btn-outline-light text-white ml-1 pr-4 pl-4" href="mailto:developer.younghwi@gmail.com"><i class="far fa-envelope"></i> </a>
+        </div>
+    </div>
+    <div class="container pb-5">
+        <div class="row">
+
+          <div class="col-12">
+              <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                  <ol class="carousel-indicators">
+                      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                      <li th:each="index : ${#numbers.sequence(1,(#lists.size(images) - 1))}"
+                          data-target="#carouselExampleIndicators" th:data-slide-to="${index}"></li>
+                  </ol>
+                  <div class="carousel-inner">
+                      <div class="carousel-item active">
+                          <img class="d-block w-100 limitImage" th:src="${images[0].imagePath}">
+                      </div>
+
+                      <div class="carousel-item" th:each="index : ${#numbers.sequence(1,(#lists.size(images) - 1))}"
+                           >
+                          <img class="d-block w-100 limitImage" th:src="${images[index].imagePath}">
+                      </div>
+
+                  </div>
+                  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="sr-only">Previous</span>
+                  </a>
+                  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="sr-only">Next</span>
+                  </a>
+              </div>
+          </div>
+      </div>
+
+        <div class="row ">
+            <div class="col-lg-12">
+                <h1 class="text-center" th:text="${title}"></h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 pt-1 pb-1">
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <td>Price</td>
+                        <td th:text="${price}"></td>
+                    </tr>
+                    <tr>
+                        <td>Address</td>
+                        <td th:text="${address}"></td>
+                    </tr>
+                    <tr>
+                        <td>Move in date</td>
+                        <td th:text="${moveInDate}"></td>
+                    </tr>
+                    <tr>
+                        <td>Bathrooms</td>
+                        <td th:text="${bathRooms}"></td>
+                    </tr>
+                    <tr th:if="${isParking == True}">
+                        <td>Parking</td>
+                        <td>Yes</td>
+                    </tr>
+
+                    <tr th:if="${isPetFriendly == True}">
+                        <td>Pet friendly</td>
+                        <td>Yes</td>
+                    </tr>
+
+                    <tr th:if="${isSmoking == True}">
+                        <td>Smoking allowed</td>
+                        <td>Outside Only</td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row pt-1 pb-1 border-top">
+            <div class="col-lg-12 pt-1 pb-1">
+                <h2 class="text-dark text-center pt-4 pb-3">Description</h2>
+                <p class="pb-5" th:text="${description}"></p>
+            </div>
+        </div>
+        <div class="row border-top text-center">
+            <div class="col-lg-12 pt-5 pb-3">
+                <h2 class="text-dark">Amenities</h2>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-around pb-5">
+
+            <div class="text-center" th:if="${hasHeat == True}">
+                <i class="fas fa-fire-alt"></i>
+                <p>Heat</p>
+            </div>
+
+            <div class="text-center" th:if="${hasHydro == True}">
+                <i class="fas fa-bolt"></i>
+                <p>Hydro</p>
+            </div>
+
+            <div class="text-center" th:if="${hasWater == True}">
+                <i class="fas fa-tint"></i>
+                <p>Water</p>
+            </div>
+
+            <div class="text-center" th:if="${hasAirconditioning == True}">
+                <i class="fas fa-snowflake"></i>
+                <p>Air conditioning</p>
+            </div>
+
+            <div class="text-center" th:if="${hasWifi == True}">
+                <i class="fas fa-wifi"></i>
+                <p>Wifi</p>
+            </div>
+
+            <div class="text-center" th:if="${hasTv == True}">
+                <i class="fas fa-tv"></i>
+                <p>TV</p>
+            </div>
+
+            <div class="text-center" th:if="${hasDishwasher == True}">
+                <i class="fas fa-columns"></i>
+                <p>Dishwasher</p>
+            </div>
+
+            <div class="text-center" th:if="${hasDryer == True}">
+                <i class="fas fa-wind"></i>
+                <p>Dryer</p>
+            </div>
+
+            <div class="text-center" th:if="${hasFridge == True}">
+                <i class="fas fa-th-large"></i>
+                <p>Fridge</p>
+            </div>
+
+            <div class="text-center" th:if="${hasLanduary == True}">
+                <i class="fas fa-archive"></i>
+                <p>Landuary</p>
+            </div>
+
+            <div class="text-center" th:if="${hasMicrowave == True}">
+                <i class="fas fa-hdd"></i>
+                <p>Microwave</p>
+            </div>
+
+
+        </div>
+        <div class="row pt-5 pb-5 border-top" th:if="${Transportation != Null}">
+            <div class="col-lg-12 pt-3 pb-2">
+                <h3 class="text-body text-center">Transportation</h3>
+                <div class="row">
+                    <div class="col-lg-12 pt-3">
+                        <span class="text-dark" th:text="${transportation}" ></span>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+        <div class="row pt-5 pb-1 border-top">
+            <div class="col-12">
+                <h2 class="text-center">Location</h2>
+            </div>
+        </div>
+        <div id="map" style="height:350px;">
+
+        </div>
+    </div>
+    <script th:inline="javascript">
+
+    var markers = [];
+    var latitude = [[${latitude}]];
+    var longitude = [[${longitude}]];
+
+    function initMap() {
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 14,
+            center: { lat: latitude, lng: longitude },
+            gestureHandling: "none"
+        });
+        var cityCircle = new google.maps.Circle({
+            strokeColor: '#FF9900',
+            strokeOpacity: 0.1,
+            strokeWeight: 1,
+            fillColor: '#FF0000',
+            fillOpacity: 0.35,
+            map: map,
+            center: {lat: latitude, lng: longitude},
+            radius: 500
+          });
+
+
+    }
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction()
+    {
+        if (document.body.scrollTop > 60 || document.documentElement.scrollTop > 60) {
+            document.getElementById("navbar").style.top = "0px";
+        }
+        else {
+
+            document.getElementById("navbar").style.top = "-100px";
+        }
+
+    }
+
+
+
+</script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXTBfzug6HRI6h216-T1elUPonBxOjyrI&callback=initMap"
+            async defer></script>
+
+</div>
+</body>
+</html>

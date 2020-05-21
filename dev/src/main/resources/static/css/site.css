@@ -1,0 +1,92 @@
+.container-fluid {
+    padding: 0px;
+    margin: 0px;
+}
+
+.mainImage {
+    background-image: url('../images/background.jpg');
+    width: 100%;
+    background-attachment: fixed;
+    background-position: center top;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.map-responsive {
+    overflow: hidden;
+    padding-bottom: 86.7vh;
+    position: relative;
+    height: 0;
+}
+
+.map-responsive #map {
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+.roomList {
+    position: absolute;
+    top: 55px;
+    bottom: 0px;
+    right: 0px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.ShowMap{
+    display:none;
+}
+.hideRoomList{
+    display:none;
+}
+.filter-bar{
+    width:95%;
+    position:relative;
+}
+.filter-box {
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 15px 18px -10px;
+    position: absolute;
+    top: 44px;
+    z-index: 101;
+    padding: 27px 30px 0px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(187, 187, 187);
+    border-image: initial;
+    border-radius: 3px;
+}
+.room-image {
+    object-fit: scale-down;
+}
+.limitImage {
+    max-height: 600px;
+}
+
+@media only screen and (max-width: 768px) {
+    .map-responsive {
+        padding-bottom: 90vh;
+    }
+    .hidden-xs-down{
+        display:none;
+    }
+    .roomList {
+        position: relative;
+        margin-left: 2px;
+        top:0px;
+    }
+    .ShowMap{
+        display:block;
+    }
+    .mapButton {
+        left: 50% !important;
+        bottom: 13px !important;
+        right: unset !important;
+    }
+    .limitImage {
+        max-height: 250px;
+    }
+
+}

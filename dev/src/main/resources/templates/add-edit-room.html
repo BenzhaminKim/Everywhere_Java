@@ -1,0 +1,217 @@
+<!DOCTYPE HTML>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{fragments/main_layout}">
+<head>
+    <title>Spring Boot Thymeleaf + Spring Security</title>
+</head>
+<body>
+<div layout:fragment="content" class="container">
+    <form method="post" enctype="multipart/form-data" action="#" th:action="@{/room/create}" th:object="${everywhereRooms}">
+        <div class="row">
+            <div class="col-12">
+                <div class="text-danger"></div>
+                <h2 class="pt-5 pb-5">What kind of place are you listing?</h2>
+                <div class="form-group pt-2 pb-2">
+                    <h5 class="text-secondary">Enter a title for your room</h5>
+                    <input type="text" th:field="*{title}" id="title" class="form-control" placeholder="Enter a title"/>
+                </div>
+                <div class="form-group pt-2 pb-2">
+                    <h5 class="text-secondary">Where is the location?</h5>
+                    <div class=" ">
+                        <input type="text" th:field="*{address}" id="address" class="form-control" placeholder="address"/>
+                    </div>
+                </div>
+
+                <div class="form-group pt-2 pb-2">
+                    <h5 class="text-secondary">Enter a price of your room</h5>
+                    <input type="text" th:field="*{price}" id="price" class="form-control w-25" placeholder="Enter a price"/>
+                </div>
+
+                <div class="form-group" style="display:block;">
+                    <input type="text" th:field="*{latitude}" id="latitude" class="form-control w-25" placeholder="latitude"/>
+                </div>
+
+                <div class="form-group" style="display:block;">
+                    <input type="text" th:field="*{longitude}" id="longitude" class="form-control w-25" placeholder="longitude"/>
+                </div>
+
+                <div class="form-group pt-2 pb-2">
+                    <h5 class="text-secondary">Enter a move-in date</h5>
+                    <div class=" ">
+                        <input type="date" th:field="*{moveInDate}" id="moveInDate" class="form-control" placeholder="2019-01-01"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <h2 class="pt-5 pb-5 text-body text">Add photos to your listing</h2>
+                    <p class="text-secondary font-italic">Photos help guests imagine staying in your place. You can start with one and add more after you publish.</p>
+                    <div class="col-md-10">
+                        <input type="file" multiple="multiple" name="files" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr />
+
+        <div class="row pt-2 pb-2">
+            <div class="col-6">
+                <h5 class="text-secondary">How many bathrooms you have?</h5>
+            </div>
+            <div class="col-6">
+                <input type="number" th:field="*{bathRooms}" id="bathRooms" class="form-control" placeholder="bathRooms"/>
+            </div>
+        </div>
+
+        <div class="row pt-2 pb-2">
+            <div class="col-6">
+                <h5 class="text-secondary">Is parking allowed?</h5>
+            </div>
+            <div class="col-6">
+                <div class="col-4 btn btn-primary font-weight-bold" id="park-no">NO</div>
+                <div class="col-4 btn btn-outline-primary font-weight-bold" id="park-yes">Yes</div>
+                <input type="checkbox" th:field="*{isParking}" id="isParking" class="d-none" />
+            </div>
+        </div>
+
+        <div class="row pt-2 pb-2">
+            <div class="col-6">
+                <h5 class="text-secondary">Is a pet allowed?</h5>
+            </div>
+            <div class="col-6">
+                <div class="col-4 btn btn-primary font-weight-bold" id="pet-no">NO</div>
+                <div class="col-4 btn btn-outline-primary font-weight-bold" id="pet-yes">Yes</div>
+                <input type="checkbox" th:field="*{isPetFriendly}" id="isPetFriendly" class="d-none" />
+            </div>
+        </div>
+
+        <div class="row pt-2 pb-2">
+            <div class="col-6">
+                <h5 class="text-secondary">Is smoking allowed?</h5>
+            </div>
+            <div class="col-6">
+                <div class="col-4 btn btn-primary font-weight-bold" id="smoking-no">NO</div>
+                <div class="col-4 btn btn-outline-primary font-weight-bold" id="smoking-yes">Yes</div>
+                <input type="checkbox" th:field="*{isSmoking}" id="isSmoking" class="d-none" />
+            </div>
+        </div>
+
+        <hr />
+
+        <div class="row">
+            <div class="col-12">
+                <h2>What utilities do you offer?</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="m-1 btn btn-outline-primary font-weight-bold" id="Hydro">Hydro</div>
+            <input type="checkbox" th:field="*{hasHydro}" id="hasHydro" class="d-none" />
+
+            <div class="m-1 btn btn-outline-primary font-weight-bold" id="Airconditioning">Air conditioning</div>
+            <input type="checkbox" th:field="*{hasAirconditioning}" id="hasAirconditioning" class="d-none" />
+
+            <div class="m-1 btn btn-outline-primary font-weight-bold" id="Water">Water</div>
+            <input type="checkbox" th:field="*{hasWater}" id="hasWater" class="d-none" />
+
+            <div class="m-1 btn btn-outline-primary font-weight-bold" id="Heat">Heat</div>
+            <input type="checkbox" th:field="*{hasHeat}" id="hasHeat" class="d-none" />
+
+            <div class="m-1 btn btn-outline-primary font-weight-bold" id="Wifi">Wifi</div>
+            <input type="checkbox" th:field="*{hasWifi}" id="hasWifi" class="d-none" />
+
+            <div class="m-1 btn btn-outline-primary font-weight-bold" id="TV">TV</div>
+            <input type="checkbox" th:field="*{hasTv}" id="hasTv" class="d-none" />
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-12">
+                <h2>What appliances do you offer?</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="m-1 btn btn-outline-primary font-weight-bold" id="Landuary">Landuary</div>
+            <input type="checkbox" th:field="*{hasLanduary}" id="hasLanduary" class="d-none" />
+
+            <div class="m-1 btn btn-outline-primary font-weight-bold" id="Dishwasher">Dishwasher</div>
+            <input type="checkbox" th:field="*{hasDishwasher}" id="hasDishwasher" class="d-none" />
+
+
+            <div class="m-1 btn btn-outline-primary font-weight-bold" id="Dryer">Dryer</div>
+            <input type="checkbox" th:field="*{hasDryer}" id="hasDryer" class="d-none" />
+
+
+            <div class="m-1 btn btn-outline-primary font-weight-bold" id="Fridge">Fridge</div>
+            <input type="checkbox" th:field="*{hasFridge}" id="hasFridge" class="d-none" />
+
+            <div class="m-1 btn btn-outline-primary font-weight-bold" id="Microwave">Microwave</div>
+            <input type="checkbox" th:field="*{hasMicrowave}" id="hasMicrowave" class="d-none"/>
+        </div>
+
+
+        <hr />
+
+        <div class="row">
+            <div class="col-12">
+                <h2 class="pt-5 pb-5">Describe your place</h2>
+                <div class="form-group">
+                    <div>
+                        <p>Write a quick summary of your place. You can highlight what’s special about your space, the neighborhood, and how you’ll interact with guests.</p>
+                    </div>
+                    <div class="col-md-10">
+                        <textarea type="text" th:field="*{description}" id="description" rows="5" class="form-control" placeholder="Describe the decor, light, what's nearby, ect..."/>
+
+                    </div>
+                </div>
+                <hr />
+                <h2 class="pt-5 pb-5">Want to add more info? (optional)</h2>
+                <h5 class="text-body">Use the additional fields below to share more details.</h5>
+
+                <div class="form-group">
+                    <div>
+                        <h3>Transportation</h3>
+                        <p>Add info about getting around your city or neighborhood, like nearby public transportation, driving tips, or good walking routes.</p>
+                    </div>
+                    <div class="col-md-10">
+                        <textarea type="text" th:field="*{transportation}" id="transportation" rows="3" class="form-control" placeholder="transportation"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+
+            </div>
+        </div>
+    </form>
+    <script type="text/javascript"  th:src="@{/js/postRoom.js}"></script>
+    <script>
+    var autocomplete;
+    var place;
+
+    function geolocation() {
+        place = autocomplete.getPlace();
+        var geoLat = place.geometry.location.lat();
+        var geoLng = place.geometry.location.lng();
+        console.log(geoLat, geoLng);
+        var LatBox = document.getElementById('latitude');
+        var LngBox = document.getElementById('longitude');
+        LatBox.value = geoLat;
+        LngBox.value = geoLng;
+    }
+    function activatePlaceSearch() {
+        var input = document.getElementById('address');
+        autocomplete = new google.maps.places.Autocomplete(input);
+
+        autocomplete.addListener('place_changed', geolocation);
+
+    }
+
+</script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXTBfzug6HRI6h216-T1elUPonBxOjyrI&libraries=places&callback=activatePlaceSearch"></script>
+
+</div>
+
+</body>
+</html>
